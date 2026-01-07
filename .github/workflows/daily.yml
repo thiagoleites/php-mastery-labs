@@ -1,0 +1,33 @@
+name: Daily PHP Mastery Update
+
+on:
+  schedule:
+    - cron: "0 13 * * *" # diariamente 13h UTC
+  workflow_dispatch:
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+      - name: Run daily progress
+        run: php scripts/daily_progress.php
+
+      - name: Generate metrics
+        run: php scripts/generate_metrics.php
+
+      - name: Commit changes
+        run: |
+          git config user.name "Thiago Santos"
+          git config user.email "thiagoleites@gmail.com"
+          git add docs/
+          git commit -m "chore: daily php mastery progress" || exit 0
+          git push
