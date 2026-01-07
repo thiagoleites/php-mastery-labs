@@ -20,6 +20,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
+    
+      - name: Run daily logs
+        run: php scripts/daily_logs.php
 
       - name: Run daily progress
         run: php scripts/daily_progress.php
@@ -31,10 +34,12 @@ jobs:
         run: |
           git config user.name "Thiago Santos"
           git config user.email "thiagoleites@gmail.com"
+
           git add docs/ || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "chore: daily php mastery progress" || exit 0
+          
+          git commit -m "chore: daily php mastery progress"
           git push
