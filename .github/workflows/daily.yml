@@ -28,6 +28,10 @@ jobs:
         run: |
           git config user.name "Thiago Santos"
           git config user.email "thiagoleites@gmail.com"
-          git add docs/
+          git add docs/ || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
           git commit -m "chore: daily php mastery progress" || exit 0
           git push
