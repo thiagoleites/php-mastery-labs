@@ -1,5 +1,5 @@
 # Métricas do Projeto
 
-Arquivos PHP: 3  
-Linhas de código: 64  
+Arquivos PHP: 4  
+Linhas de código: 82  
 Atualizado em: {date('Y-m-d H:i:s')}
