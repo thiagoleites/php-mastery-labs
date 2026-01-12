@@ -3,3 +3,4 @@
 - [2026-01-09 13:34] Estudo contínuo de PHP (algoritmos, POO, boas práticas)
 - [2026-01-10 13:25] Estudo contínuo de PHP (algoritmos, POO, boas práticas)
 - [2026-01-11 13:26] Estudo contínuo de PHP (algoritmos, POO, boas práticas)
+- [2026-01-12 13:38] Estudo contínuo de PHP (algoritmos, POO, boas práticas)
