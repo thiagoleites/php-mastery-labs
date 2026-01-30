@@ -21,3 +21,4 @@
 - [2026-01-27] Estudo contínuo em PHP
 - [2026-01-28] Estudo contínuo em PHP
 - [2026-01-29] Estudo contínuo em PHP
+- [2026-01-30] Estudo contínuo em PHP
