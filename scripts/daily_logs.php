@@ -1,18 +1,14 @@
 <?php
-
-$file = __DIR__ . '/../docs/daily-log.md';
+$base = realpath(__DIR__ . '/..');
+$dir  = $base . '/docs/logs';
+@mkdir($dir, 0777, true);
 
 $today = date('Y-m-d');
-$time  = date('H:i');
+$time  = date('H:i:s');
 
-$line = "- [$today $time] Estudo contínuo de PHP (algoritmos, POO, boas práticas)";
+$file = "{$dir}/{$today}.md";
 
-$lines = file_exists($file)
-    ? file($file, FILE_IGNORE_NEW_LINES)
-    : [];
+// Dica: você pode editar esse texto quando quiser
+$line = "- [{$today} {$time}] Estudo contínuo de PHP\n";
 
-if (!in_array($line, $lines)) {
-    $lines[] = $line;
-}
-
-file_put_contents($file, implode("\n", $lines) . "\n");
+file_put_contents($file, $line, FILE_APPEND | LOCK_EX);

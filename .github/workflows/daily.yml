@@ -2,11 +2,19 @@ name: Daily PHP Mastery Update
 
 on:
   schedule:
-    - cron: "0 13 * * *" # diariamente 13h UTC
+    - cron: "0 9 * * *"
+    - cron: "0 12 * * *"
+    - cron: "0 15 * * *"
+    - cron: "0 18 * * *"
+    - cron: "0 21 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: daily-php-mastery
+  cancel-in-progress: false
 
 jobs:
   daily:
@@ -15,12 +23,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
-    
+
+      - name: Random delay (jitter)
+        shell: bash
+        run: |
+          delay=$(( RANDOM % 2101 )) # 0..35min
+          echo "Sleeping ${delay}s..."
+          sleep "${delay}"
+
       - name: Run daily logs
         run: php scripts/daily_logs.php
 
@@ -30,16 +47,19 @@ jobs:
       - name: Generate metrics
         run: php scripts/generate_metrics.php
 
-      - name: Commit changes
+      - name: Commit changes (docs + algorithms)
+        shell: bash
         run: |
           git config user.name "Thiago Santos"
           git config user.email "thiagoleites@gmail.com"
 
-          git add docs/ || true
+          git add docs/ algorithms/ || true
+
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          
-          git commit -m "chore: daily php mastery progress"
+
+          ts="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git commit -m "chore: php mastery update ${ts}"
           git push

@@ -1,15 +1,18 @@
 <?php
-
-$file = __DIR__ . '/../docs/progress.md';
+$base = realpath(__DIR__ . '/..');
+$file = $base . '/docs/progress.md';
+@mkdir(dirname($file), 0777, true);
 
 $today = date('Y-m-d');
 
-$entries = file_exists($file)
-    ? file($file, FILE_IGNORE_NEW_LINES)
-    : [];
+$header = "# Progresso de Estudo (PHP)\n\n| Data | Status |\n|---|---|\n";
+$row = "| {$today} | ✅ Estudo contínuo |\n";
 
-if (!in_array("- [$today] Estudo contínuo em PHP", $entries)) {
-    $entries[] = "- [$today] Estudo contínuo em PHP";
+if (!file_exists($file) || trim((string)file_get_contents($file)) === '') {
+    file_put_contents($file, $header, LOCK_EX);
 }
 
-file_put_contents($file, implode("\n", $entries));
+$content = (string)file_get_contents($file);
+if (strpos($content, "| {$today} |") === false) {
+    file_put_contents($file, $row, FILE_APPEND | LOCK_EX);
+}
