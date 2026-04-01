@@ -81,3 +81,4 @@
 | 2026-03-29 | ✅ Estudo contínuo |
 | 2026-03-30 | ✅ Estudo contínuo |
 | 2026-03-31 | ✅ Estudo contínuo |
+| 2026-04-01 | ✅ Estudo contínuo |
