@@ -1,5 +1,5 @@
 # Métricas do Projeto
 
 Arquivos PHP: 9  
-Linhas de código: 219  
-Atualizado em: 2026-04-07 21:45:01
+Linhas de código: 243  
+Atualizado em: 2026-04-08 10:29:45
