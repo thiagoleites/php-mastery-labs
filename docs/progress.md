@@ -97,3 +97,4 @@
 | 2026-04-14 | ✅ Estudo contínuo |
 | 2026-04-15 | ✅ Estudo contínuo |
 | 2026-04-16 | ✅ Estudo contínuo |
+| 2026-04-17 | ✅ Estudo contínuo |
